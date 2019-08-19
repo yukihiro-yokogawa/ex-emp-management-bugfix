@@ -38,6 +38,9 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-sm-12">
+										<div class="alert alert-danger" th:if="${errorMessage}">
+			                        		<p th:text="${errorMessage}">メールアドレスまたはパスワードが間違っています</p>
+			                    		</div>
 										<label for="name">
 											氏名:
 										</label>

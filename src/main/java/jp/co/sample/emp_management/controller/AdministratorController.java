@@ -74,11 +74,23 @@ public class AdministratorController {
 		if(result.hasErrors()) {
 			return toInsert();
 		}
-		
+			
+		//登録済みのメールアドレスかどうかの確認
+		Administrator administratorCheck = new Administrator();
+		administratorCheck = administratorService.serchByMailAddress(form.getMailAddress());
+
+		if(form.getMailAddress().equals(administratorCheck.getMailAddress())) {
+			model.addAttribute("errorMessage","既に登録されているメールアドレスです");
+			return toInsert();
+		}
+
 		Administrator administrator = new Administrator();
 		// フォームからドメインにプロパティ値をコピー
 		BeanUtils.copyProperties(form, administrator);
+		
 		administratorService.insert(administrator);
+		
+		
 		return "redirect:/";
 	}
 
