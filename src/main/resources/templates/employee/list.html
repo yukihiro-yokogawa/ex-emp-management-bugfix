@@ -44,6 +44,10 @@
 						&nbsp;&nbsp;&nbsp;
 						<a href="../administrator/login.html" class="navbar-link" th:href="@{/logout}">ログアウト</a>
 					</p>
+					<form th:action="@{/employee/searchEmployees}" method="post" class="navbar-text navbar-right">
+							従業員検索：<input type="text" name="name">
+							<button>検索</button>
+					</form>
 				</div>
 				<!-- /.navbar-collapse -->
 			</div>
@@ -63,7 +67,11 @@
 <!-- ここから上を編集する必要はありません -->
 
 <!-- ここにモックのtable要素を貼り付けます -->
-
+				<div class="form-group">
+						<div class="alert alert-danger" th:if="${searchEmpty}">
+			    		<p th:text="${searchEmpty}">1件もありませんでした</p>
+			    	</div>
+				</div>
 				<table class="table table-striped">
 					<thead>
 						<tr>

@@ -53,7 +53,31 @@ public class EmployeeController {
 		model.addAttribute("employeeList", employeeList);
 		return "employee/list";
 	}
-
+	
+	/////////////////////////////////////////////////////
+	// ユースケース：入力された文字列を含んだ従業員一覧を表示する（空文字の場合は全検索）
+	/////////////////////////////////////////////////////
+	/**
+	 * 入力された文字列を含んだ従業員一覧画面を出力します.
+	 * 
+	 * @param name 検索したい従業員名
+	 * @param model モデル
+	 * @return 従業員一覧画面
+	 */
+	@RequestMapping("/searchEmployees")
+	public String searchEmployees(String name,Model model) {
+		List<Employee> employeeList = employeeService.searchEmployees(name);
+		
+		if(employeeList.size() == 0) {
+			employeeList = employeeService.showList();
+			model.addAttribute("searchEmpty", "1件もありませんでした");
+			return "employee/List";
+		}
+		
+		model.addAttribute("employeeList",employeeList);
+		return "employee/list";
+	}
+	
 	
 	/////////////////////////////////////////////////////
 	// ユースケース：従業員詳細を表示する

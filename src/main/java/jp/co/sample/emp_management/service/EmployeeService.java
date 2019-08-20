@@ -33,6 +33,17 @@ public class EmployeeService {
 	}
 	
 	/**
+	 * フォームに入力された名前に対応する従業員一覧を取得します.
+	 * 
+	 * @param name 検索したい従業員名
+	 * @return 検索された従業員一覧 空文字が入力された場合は従業員一覧を返します
+	 */
+	public List<Employee> searchEmployees(String name){
+		List<Employee> employeeList = employeeRepository.searchEmployees(name);
+		return employeeList;
+	}
+	
+	/**
 	 * 従業員情報を取得します.
 	 * 
 	 * @param id ID
