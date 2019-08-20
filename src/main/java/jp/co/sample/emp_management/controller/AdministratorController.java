@@ -72,10 +72,9 @@ public class AdministratorController {
 		
 		// 登録済みのメールアドレスかどうかの確認
 		Administrator administratorCheck = administratorService.serchByMailAddress(form.getMailAddress());
-
-		if (form.getMailAddress().equals(administratorCheck.getMailAddress())) {
+		
+		if (!(administratorCheck==null)&&form.getMailAddress().equals(administratorCheck.getMailAddress())) {
 			result.rejectValue("mailAddress",null,"既に登録されているメールアドレスです");
-			return toInsert();
 		}
 
 		if (result.hasErrors()) {
