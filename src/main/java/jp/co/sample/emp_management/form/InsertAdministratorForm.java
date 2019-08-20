@@ -23,6 +23,7 @@ public class InsertAdministratorForm {
 	@Size(min = 1, max = 16, message = "パスワードは1文字以上16文字以内で記載してください")
 	private String password;
 	/** 確認用パスワード */
+	@Size(min = 1, max = 16, message = "パスワードは1文字以上16文字以内で記載してください")
 	private String passwordConfirm;
 	
 	/**
