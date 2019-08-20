@@ -117,7 +117,7 @@ public class AdministratorController {
 	 * @return ログイン後の従業員一覧画面
 	 */
 	@RequestMapping("/login")
-	public String login(LoginForm form, BindingResult result, Model model,HttpSession session) {
+	public String login(LoginForm form, BindingResult result, Model model) {
 		Administrator administrator = administratorService.login(form.getMailAddress(), form.getPassword());
 		if (administrator == null) {
 			model.addAttribute("errorMessage", "メールアドレスまたはパスワードが不正です。");
