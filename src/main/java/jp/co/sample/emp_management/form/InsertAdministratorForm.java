@@ -24,10 +24,16 @@ public class InsertAdministratorForm {
 	private String password;
 	@Size(min = 1, max = 16, message = "パスワードは1文字以上16文字以内で記載してください")
 	private String passwordConfirm;
-
+	
+	/**
+	 * 常にtrueでなければならないバリデーション
+	 * 確認用パスワードがパスワード
+	 * 
+	 * @return true
+	 */
 	@AssertTrue(message = "パスワードが一致していません")
 	public boolean isPasswordConfirmed() {
-		if (password == null || password.isEmpty()) {
+		if ((password == null || password.isEmpty())&&(passwordConfirm == null || passwordConfirm.isEmpty())) {
 			return true;
 		}
 		return password.equals(passwordConfirm);
