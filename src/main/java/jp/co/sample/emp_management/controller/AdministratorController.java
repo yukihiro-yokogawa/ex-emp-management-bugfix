@@ -69,16 +69,16 @@ public class AdministratorController {
 	 */
 	@RequestMapping("/insert")
 	public String insert(@Validated InsertAdministratorForm form, BindingResult result, Model model) {
-
-		if (result.hasErrors()) {
-			return toInsert();
-		}
-
+		
 		// 登録済みのメールアドレスかどうかの確認
 		Administrator administratorCheck = administratorService.serchByMailAddress(form.getMailAddress());
 
 		if (form.getMailAddress().equals(administratorCheck.getMailAddress())) {
-			model.addAttribute("errorMessage", "既に登録されているメールアドレスです");
+			result.rejectValue("mailAddress",null,"既に登録されているメールアドレスです");
+			return toInsert();
+		}
+
+		if (result.hasErrors()) {
 			return toInsert();
 		}
 
