@@ -19,9 +19,9 @@ import jp.co.sample.emp_management.repository.AdministratorRepository;
 public class AdministratorService {
 	
 	@Autowired
-	private AdministratorRepository administratorRepository;
+	AdministratorRepository administratorRepository;
 	@Autowired
-	private PasswordEncoder passwordEncoder;
+	PasswordEncoder passwordEncoder;
 	
 	/**
 	 * 管理者情報を登録します.

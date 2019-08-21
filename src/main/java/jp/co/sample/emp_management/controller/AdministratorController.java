@@ -110,16 +110,16 @@ public class AdministratorController {
 	 * @param result エラー情報格納用オブッジェクト
 	 * @return ログイン後の従業員一覧画面
 	 */
-	@RequestMapping("/login")
-	public String login(LoginForm form, BindingResult result, Model model) {
-		Administrator administrator = administratorService.login(form.getMailAddress(), form.getPassword());
-		if (administrator == null) {
-			model.addAttribute("errorMessage", "メールアドレスまたはパスワードが不正です。");
-			return toLogin();
-		}
-		session.setAttribute("administratorName", administrator.getName());
-		return "forward:/employee/showList";
-	}
+//	@RequestMapping("/login")
+//	public String login(LoginForm form, BindingResult result, Model model) {
+//		Administrator administrator = administratorService.login(form.getMailAddress(), form.getPassword());
+//		if (administrator == null) {
+//			model.addAttribute("errorMessage", "メールアドレスまたはパスワードが不正です。");
+//			return toLogin();
+//		}
+//		session.setAttribute("administratorName", administrator.getName());
+//		return "forward:/employee/showList";
+//	}
 
 	/////////////////////////////////////////////////////
 	// ユースケース：ログアウトをする
@@ -129,10 +129,10 @@ public class AdministratorController {
 	 * 
 	 * @return ログイン画面
 	 */
-	@RequestMapping(value = "/logout")
-	public String logout() {
-		session.invalidate();
-		return "redirect:/";
-	}
+//	@RequestMapping(value = "/logout")
+//	public String logout() {
+//		session.invalidate();
+//		return "redirect:/";
+//	}
 
 }
