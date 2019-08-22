@@ -19,6 +19,9 @@ public class JpaUserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String mailAddress)
 		throws UsernameNotFoundException {
 		Administrator administrator = administratorRepository.findByMailAddress(mailAddress);
+		if(administrator == null) {
+			throw new UsernameNotFoundException("そのEmailは登録されていません");
+		}
 		return administrator;
 	}
 }

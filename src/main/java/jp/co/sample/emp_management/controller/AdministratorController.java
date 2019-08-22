@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.sample.emp_management.domain.Administrator;
 import jp.co.sample.emp_management.form.InsertAdministratorForm;
@@ -99,7 +100,10 @@ public class AdministratorController {
 	 * @return ログイン画面
 	 */
 	@RequestMapping("/")
-	public String toLogin() {
+	public String toLogin(Model model,boolean error) {
+		if (error) {
+			model.addAttribute("errorMessage", "メールアドレスまたはパスワードが不正です。");
+		}
 		return "administrator/login";
 	}
 
@@ -129,10 +133,10 @@ public class AdministratorController {
 	 * 
 	 * @return ログイン画面
 	 */
-//	@RequestMapping(value = "/logout")
-//	public String logout() {
-//		session.invalidate();
-//		return "redirect:/";
-//	}
+	@RequestMapping(value = "/logout")
+	public String logout() {
+		session.invalidate();
+		return "redirect:/";
+	}
 
 }
